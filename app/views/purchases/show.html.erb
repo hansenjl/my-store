@@ -1,0 +1,7 @@
+<h1>Your purchase:</h1>
+<h2>Item: <%= @purchase.item.name %> </h2>
+<h4>Price: $<%= @purchase.item.price %> - Quantity:<%= @purchase.quantity%> </h4>
+<h4>Total Price: <strong>$<%= @purchase.item.price * @purchase.quantity.to_f %></strong></h4>
+<p><%= @purchase.item.description %></p>
+
+
