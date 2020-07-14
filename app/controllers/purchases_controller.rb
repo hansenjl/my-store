@@ -9,7 +9,7 @@ class PurchasesController < ApplicationController
 
     def create
         @purchase = current_user.purchases.build(purchase_params)
-        if !!@purchase.item_id && !!Item.find_by_id(@purchase.item_id) && !!@purchase.quantity && @purchase.quantity > 0 && (@purchase.quantity * @purchase.item.price) <= current_user.balance
+        if valid_purchase?
             @purchase.save
             redirect_to purchase_path(@purchase)
         else
@@ -22,6 +22,19 @@ class PurchasesController < ApplicationController
     end
 
     private
+
+    def valid_purchase?
+        if !@purchase.item_id || !Item.find_by_id(@purchase.item_id)
+            @errors = "Must select an item"
+        elsif !@purchase.quantity || @purchase.quantity < 1
+            @errors = "Must select a quantity greater than 0"
+        elsif @purchase.quantity > @purchase.item.quantity
+            @errors = "Quantity selected is too large"
+        elsif (@purchase.quantity * @purchase.item.price) > current_user.balance
+            @errors = "Not enough money in your account to complete this transaction"
+        end
+        !@errors #this will result in the method returning true or false
+    end
 
     def purchase_params
         params.require(:purchase).permit(:item_id, :quantity)
