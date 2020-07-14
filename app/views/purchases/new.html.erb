@@ -18,6 +18,7 @@
 
 <%= form_with model: [@purchase.item, @purchase], local: true  do |f|%>
     <% if @purchase.item %>
+        <h3><%= @purchase.item.name %></h3>
         <%= f.hidden_field :item_id, value: @purchase.item_id %>
     <% else %>
         <%= f.label :item_id, "Select an Item:"%>
