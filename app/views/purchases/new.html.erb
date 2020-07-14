@@ -1,0 +1,29 @@
+<h1>Make a Purchase</h1>
+
+<% if @purchase.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@purchase.errors.count, "error") %>
+      prohibited your purchase:
+    </h2>
+
+    <ul>
+    <% @purchase.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+
+
+<%= form_with model: [@purchase.item, @purchase], local: true  do |f|%>
+    <% if @purchase.item %>
+        <%= f.hidden_field :item_id, value: @purchase.item_id %>
+    <% else %>
+        <%= f.label :item_id, "Select an Item:"%>
+        <%= f.collection_select :item_id, Item.all, :id, :name %>
+    <% end %>
+    <%= f.label :quantity %>
+    <%= f.number_field :quantity, min: 0, max: @purchase.item.try(:quantity)%>
+    <%= f.submit %>
+
+<% end %>
