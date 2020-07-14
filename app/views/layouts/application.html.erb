@@ -15,7 +15,7 @@
         <%= link_to 'HOME', user_path(current_user) %> |
         <%= link_to 'ALL ITEMS', items_path %> |
         <%= link_to 'NEW PURCHASE', new_purchase_path %> |
-        <%= link_to 'LOGOUT', '/logout', method: delete %>
+        <%= link_to 'LOGOUT', '/logout', method: 'delete' %>
 
       <% else %>
         <%= link_to 'login', '/login' %> |
