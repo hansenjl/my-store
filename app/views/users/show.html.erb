@@ -1,0 +1,20 @@
+<h1>Welcome, <%= @user.username %></h1>
+<h3>Here are your previous purchases:</h3>
+
+<thead>
+   <th>Item:</th>
+   <th>Quantity:</th>
+   <th>Price</th>
+   <th>Purchase Again?</th>
+ </thead>
+ <tbody>
+    <% @user.purchases.each do |p|%>
+        <tr>
+            <th><%= link_to p.item.name, item_path(p.item) %></th>
+            <th><%= p.quantity %></th>
+            <th>$<%= p.item.price * p.quantity.to_f %></th>
+            <th><%= link_to "buy again", new_item_purchase_path(p.item) %></th>
+        </tr>
+
+    <% end %>
+</tbody>
