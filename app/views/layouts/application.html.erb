@@ -10,6 +10,18 @@
   </head>
 
   <body>
+    <div>
+      <% if logged_in? %>
+        <%= link_to 'HOME', user_path(current_user) %> |
+        <%= link_to 'ALL ITEMS', items_path %> |
+        <%= link_to 'NEW PURCHASE', new_purchase_path %> |
+        <%= link_to 'LOGOUT', '/logout', method: delete %>
+
+      <% else %>
+        <%= link_to 'login', '/login' %> |
+        <%= link_to 'signup', '/signup' %>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>
