@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root: 'items#index'
+  root 'items#index'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/signup' => 'users#new'
