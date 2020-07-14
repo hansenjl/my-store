@@ -1,0 +1,19 @@
+<h1>All Items</h1>
+
+ <thead>
+   <th>Item:</th>
+   <th>Quantity:</th>
+   <th>Price</th>
+   <th>Purchase:</th>
+ </thead>
+ <tbody>
+    <% @items.each do |i|%>
+        <tr>
+            <th><%= link_to i.name, item_path(i) %></th>
+            <th><%= i.quantity %></th>
+            <th>$<%= i.price %></th>
+            <th><%= link_to "purcahse", item_purchase_path(i) %></th>
+        </tr>
+
+    <% end %>
+</tbody>
