@@ -12,7 +12,7 @@
             <th><%= link_to i.name, item_path(i) %></th>
             <th><%= i.quantity %></th>
             <th>$<%= i.price %></th>
-            <th><%= link_to "purcahse", item_purchase_path(i) %></th>
+            <th><%= link_to "purchase", new_item_purchase_path(i) %></th>
         </tr>
 
     <% end %>
